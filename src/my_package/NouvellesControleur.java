@@ -108,6 +108,11 @@ public final class NouvellesControleur {
        ajoutInterface.setVisible(true);
     }
     
+    // Description : afficher l'interface pour l'ajout
+    public void afficherExport(){
+       exportInterface.setVisible(true);
+    }
+    
     // Description : mettre à jour la liste graphique des nouvelles
     public void mettreAJour(){
        fluxInterface.mettreAJourListing();

@@ -443,7 +443,7 @@ public class FluxInterface extends javax.swing.JFrame {
 
     private void exporterBoutonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exporterBoutonActionPerformed
         // TODO add your handling code here:
-        
+        controleur.afficherExport();
     }//GEN-LAST:event_exporterBoutonActionPerformed
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
@@ -472,8 +472,8 @@ public class FluxInterface extends javax.swing.JFrame {
 
     private void enregisterBoutonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enregisterBoutonActionPerformed
         // TODO add your handling code here:
-        String lien = "test";
-        controleur.exporterXML(lien);
+     //   String lien = "test";
+     //   controleur.exporterXML(lien);
     }//GEN-LAST:event_enregisterBoutonActionPerformed
 
     private void NouvelleTableFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_NouvelleTableFocusGained
