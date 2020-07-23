@@ -143,6 +143,13 @@ public final class NouvellesControleur {
       // Description : creer et exporter un fichier XML
      public void exporterXML(String path){
          String lien = "C:\\Users\\hugob\\Documents\\myxml.xml";
-         reader.exporterXML(this, lien);
+           String replacePath = path.replace("\\", "\\\\");  
+           replacePath = replacePath + "\\myFeed.xml";
+           System.out.print(replacePath);
+         reader.exporterXML(this, replacePath);
+     }
+     
+     public void afficherMessage(String message){
+       fluxInterface.afficherMessage(message);
      }
 }

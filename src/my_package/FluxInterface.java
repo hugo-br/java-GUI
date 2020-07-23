@@ -6,6 +6,8 @@
 package my_package;
 
 import java.util.ArrayList;
+import java.util.Timer;
+import java.util.TimerTask;
 import javax.swing.JOptionPane;
 import javax.swing.table.AbstractTableModel;
 
@@ -13,10 +15,13 @@ import javax.swing.table.AbstractTableModel;
  *
  * @author hugob
  */
+
+
 public class FluxInterface extends javax.swing.JFrame {
 
      
      NouvellesControleur controleur;
+     Timer timer;
 
     /**
      * Creates new form NewJFrame
@@ -46,8 +51,8 @@ public class FluxInterface extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(FluxInterface.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        //</editor-fold>
-
+        //</editor-fold>   
+        timer = new Timer();
         this.controleur = controleur;
         initComponents();
         initialiserNouvelles();
@@ -98,10 +103,39 @@ public class FluxInterface extends javax.swing.JFrame {
             }
     };
     
+    /*
+    Description :
+    Mettre a jour la table d'evenements
+    */
     public void mettreAJourListing() {
         NouvelleTable.updateUI(); 
         setNombreNouvelle();
     }
+    /*
+    Description :
+    Mettre a jour la table d'evenements
+    */
+    public void afficherMessage(String message) {
+        Messages.setText(message);
+        supprimerMesage();
+    }
+    
+    
+    public void supprimerMesage() 
+    {  
+        new java.util.Timer().schedule( 
+                new java.util.TimerTask() {
+                    @Override
+                    public void run() {
+                        // your code here
+                        Messages.setText("");
+                    }
+                }, 
+                5000 
+        );
+    } 
+    
+    
     
 
     /**
@@ -131,7 +165,7 @@ public class FluxInterface extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox<>();
         jPanel2 = new javax.swing.JPanel();
-        jScrollPane2 = new javax.swing.JScrollPane();
+        jScrollPane3 = new javax.swing.JScrollPane();
         Messages = new javax.swing.JTextPane();
         label1 = new java.awt.Label();
         nombreLabel = new javax.swing.JLabel();
@@ -259,10 +293,16 @@ public class FluxInterface extends javax.swing.JFrame {
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Date", "Pertinence", "" }));
 
+        Messages.setEditable(false);
         Messages.setBackground(new java.awt.Color(204, 204, 204));
-        Messages.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        Messages.setEnabled(false);
-        jScrollPane2.setViewportView(Messages);
+        Messages.setFont(new java.awt.Font("Arial", 1, 10)); // NOI18N
+        Messages.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        Messages.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
+        Messages.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+        Messages.setRequestFocusEnabled(false);
+        Messages.setSelectedTextColor(new java.awt.Color(204, 204, 204));
+        Messages.setVerifyInputWhenFocusTarget(false);
+        jScrollPane3.setViewportView(Messages);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -270,15 +310,15 @@ public class FluxInterface extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane2)
+                .addComponent(jScrollPane3)
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(jScrollPane3)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -322,12 +362,12 @@ public class FluxInterface extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         label1.setAlignment(java.awt.Label.CENTER);
-        label1.setFont(new java.awt.Font("Arial Black", 0, 24)); // NOI18N
+        label1.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
         label1.setForeground(new java.awt.Color(13, 25, 13));
         label1.setText("Flux de nouvelles de la TELUQ");
 
@@ -474,6 +514,8 @@ public class FluxInterface extends javax.swing.JFrame {
         // TODO add your handling code here:
      //   String lien = "test";
      //   controleur.exporterXML(lien);
+          String message = "Enregistrer";
+          controleur.afficherMessage(message);
     }//GEN-LAST:event_enregisterBoutonActionPerformed
 
     private void NouvelleTableFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_NouvelleTableFocusGained
@@ -501,7 +543,7 @@ public class FluxInterface extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPopupMenu jPopupMenu1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;

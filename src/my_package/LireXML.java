@@ -49,8 +49,9 @@ public class LireXML
     
     public static void getNouvelles(NouvellesControleur controleur){
         
-        System.out.println("\n=================================\n");
+        System.out.println("\n========== START ...\n");
         String xmlFile = "https://www.teluq.ca/site/infos/rss/communiques.php";
+    // String xmlFile = "myxml.xml";
         Document document = getSAXParsedDocument(xmlFile);
         Element rootNode = document.getRootElement();
      //   System.out.println("Root Element :: " + rootNode.getName());
@@ -91,7 +92,7 @@ public class LireXML
           //  System.out.println(title);
          }
         }
-        System.out.println("\n=================================\n");
+        System.out.println("\n... END ==============\n");
         
     }
     
@@ -214,8 +215,8 @@ public class LireXML
         try {
          // Writer fileWriter = new FileWriter("C:\\Users\\hugob\\Documents\\"+doc);
             outter.output(doc, new FileWriter(new File(path)));
-         //   fileWriter.write(doc);
-       //   fileWriter.close();
+            String message = "Le fichier XML a été enregistré dans le répertoire suivant : \n" + path;
+            controleur.afficherMessage(message);
 
         } catch (IOException ex) {
             Logger.getLogger(LireXML.class.getName()).log(Level.SEVERE, null, ex);
@@ -224,20 +225,5 @@ public class LireXML
  
     
     }
-    
-    
-     
-    /*private static String readFileContent(String filePath) 
-    {
-        StringBuilder contentBuilder = new StringBuilder();
-        try (Stream<String> stream = Files.lines( Paths.get(filePath), StandardCharsets.UTF_8)) 
-        {
-            stream.forEach(s -> contentBuilder.append(s).append("\n"));
-        }
-        catch (IOException e) 
-        {
-            e.printStackTrace();
-        }
-        return contentBuilder.toString();
-    }*/
+
 }
