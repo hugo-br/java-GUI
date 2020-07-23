@@ -96,40 +96,18 @@ public class ExportInterface extends javax.swing.JFrame {
   
         if (com.equals("ApproveSelection")) { 
                
-               System.out.println(jFileChooser1.getSelectedFile().getName());
-           /*  System.out.println("getCurrentDirectory(): " 
-         +  jFileChooser1.getCurrentDirectory()); */
-             
-             System.out.println("You chose to open this file: "+ jFileChooser1.getSelectedFile().getName());
+          System.out.println(jFileChooser1.getSelectedFile().getName());
+          System.out.println("You chose to open this file: "+ jFileChooser1.getSelectedFile().getName());
              
            File directory = jFileChooser1.getCurrentDirectory();
            String folder =  jFileChooser1.getSelectedFile().getName();
            
             var path = directory + "\\" + folder; 
-            System.out.println(path);
             controleur.exporterXML(path);
-            
+            this.setVisible(false);
         } else if (com.equals("CancelSelection")) {
             this.setVisible(false);
-            
         }
-        
-	//File selectedFile = j.getSelectedFile();
-	//System.out.println(selectedFile.getAbsolutePath());
-
-        
-  /*     
-         System.out.println("getCurrentDirectory(): " 
-         +  chooser.getCurrentDirectory());
-         
-         System.out.println("getSelectedFile() : " 
-         +  chooser.get );
-         
-       //  chooser.get
-      
-         
-        System.out.print("Choisie");
-    */    
     }//GEN-LAST:event_jFileChooser1ActionPerformed
 
     /**

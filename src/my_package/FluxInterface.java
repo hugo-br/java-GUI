@@ -296,9 +296,11 @@ public class FluxInterface extends javax.swing.JFrame {
         Messages.setEditable(false);
         Messages.setBackground(new java.awt.Color(204, 204, 204));
         Messages.setFont(new java.awt.Font("Arial", 1, 10)); // NOI18N
+        Messages.setAutoscrolls(false);
         Messages.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         Messages.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
         Messages.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+        Messages.setEnabled(false);
         Messages.setRequestFocusEnabled(false);
         Messages.setSelectedTextColor(new java.awt.Color(204, 204, 204));
         Messages.setVerifyInputWhenFocusTarget(false);
@@ -511,10 +513,8 @@ public class FluxInterface extends javax.swing.JFrame {
     }//GEN-LAST:event_NouvelleTableMouseClicked
 
     private void enregisterBoutonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enregisterBoutonActionPerformed
-        // TODO add your handling code here:
-     //   String lien = "test";
-     //   controleur.exporterXML(lien);
-          String message = "Enregistrer";
+
+          String message = "Enregistrer...";
           controleur.afficherMessage(message);
     }//GEN-LAST:event_enregisterBoutonActionPerformed
 

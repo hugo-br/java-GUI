@@ -213,8 +213,9 @@ public class AjoutInterface extends javax.swing.JFrame {
         controleur.ajouterNouvelle(nouv);
         controleur.mettreAJour();
         clearFields();
-        
-        
+        String message = "La nouvelle : " + nouv.getTitle() + " a été ajoutée!";
+        controleur.afficherMessage(message);
+         this.setVisible(false);
     }//GEN-LAST:event_ajoutEvnBtnActionPerformed
 
     private void fermerBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_fermerBtnMouseClicked

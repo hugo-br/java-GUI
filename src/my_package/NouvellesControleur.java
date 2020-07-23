@@ -5,6 +5,7 @@
  */
 package my_package;
 
+import java.text.MessageFormat;
 import java.util.ArrayList;
 import javax.xml.parsers.ParserConfigurationException;
 /**
@@ -71,25 +72,24 @@ public final class NouvellesControleur {
         this.description = description;
     }    
         
-    
-  public void ajouterNouvelle(Nouvelles nouvelle) {
-        
-        // Ajout de la nouvelle
-        nouvelles.add(nouvelle);
-        
-        // Mise ? jour du listing des employes
-   //    fluxInterface.mettreAJourListing();
-        
+ // Ajout de la nouvelle   
+  public void ajouterNouvelle(Nouvelles nouvelle) {    
+        nouvelles.add(nouvelle);  
   }
   
+  // Enlever la nouvelle de la liste
    public void supprimerNouvelle(Integer i) {
         
-        // Enlever la nouvelle de la liste
+        
         Nouvelles nouv = this.getNouvelle(i);
+        String message = nouv.getTitle() + " a été supprimé de la liste.";
         nouvelles.remove(nouv); 
         
         // Mise a jour la liste 
        this.mettreAJour();  
+       
+       // afficher message
+       this.afficherMessage(message);
   } 
   
     // Description : retourner toutes les nouvelles <ArrayList>
@@ -116,6 +116,8 @@ public final class NouvellesControleur {
     // Description : mettre à jour la liste graphique des nouvelles
     public void mettreAJour(){
        fluxInterface.mettreAJourListing();
+       String message = "La nouvelle a été mise à jour!";
+       this.afficherMessage(message);
     }
     
     
@@ -142,11 +144,9 @@ public final class NouvellesControleur {
      
       // Description : creer et exporter un fichier XML
      public void exporterXML(String path){
-         String lien = "C:\\Users\\hugob\\Documents\\myxml.xml";
            String replacePath = path.replace("\\", "\\\\");  
-           replacePath = replacePath + "\\myFeed.xml";
-           System.out.print(replacePath);
-         reader.exporterXML(this, replacePath);
+           replacePath = replacePath + "\\monFeed.xml";
+           reader.exporterXML(this, replacePath);
      }
      
      public void afficherMessage(String message){
