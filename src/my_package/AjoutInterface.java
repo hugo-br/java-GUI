@@ -5,6 +5,7 @@
  */
 package my_package;
 
+import java.awt.Color;
 import javax.swing.JTextField;
 
 /**
@@ -49,6 +50,7 @@ public class AjoutInterface extends javax.swing.JFrame {
         ajoutEvnBtn = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         descriptionInput = new javax.swing.JTextArea();
+        errorLabel = new javax.swing.JLabel();
         titreAjout = new java.awt.Label();
 
         label1.setAlignment(java.awt.Label.CENTER);
@@ -73,6 +75,7 @@ public class AjoutInterface extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jLabel6.setText("Date");
 
+        titreInput.setVerifyInputWhenFocusTarget(true);
         titreInput.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 titreInputActionPerformed(evt);
@@ -117,35 +120,52 @@ public class AjoutInterface extends javax.swing.JFrame {
         descriptionInput.setRows(5);
         jScrollPane1.setViewportView(descriptionInput);
 
+        errorLabel.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
+        errorLabel.setForeground(new java.awt.Color(153, 0, 0));
+        errorLabel.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        errorLabel.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        errorLabel.setEnabled(false);
+        errorLabel.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        errorLabel.setMaximumSize(new java.awt.Dimension(229, 300));
+        errorLabel.setMinimumSize(new java.awt.Dimension(229, 229));
+        errorLabel.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(53, 53, 53)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel6))
-                .addGap(40, 40, 40)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(titreInput)
-                    .addComponent(dateInput)
-                    .addComponent(jScrollPane1)
-                    .addComponent(lienInput))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(124, 124, 124)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(10, 10, 10)
+                                .addComponent(errorLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(ajoutEvnBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 126, Short.MAX_VALUE)
+                                .addComponent(fermerBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(46, 46, 46))))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(53, 53, 53)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel6))
+                        .addGap(40, 40, 40)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(titreInput)
+                            .addComponent(dateInput)
+                            .addComponent(jScrollPane1)
+                            .addComponent(lienInput))))
                 .addGap(63, 63, 63))
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(124, 124, 124)
-                .addComponent(ajoutEvnBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
-                .addComponent(fermerBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(109, 109, 109))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(10, 10, 10)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(titreInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -161,11 +181,13 @@ public class AjoutInterface extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(dateInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(27, 27, 27)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(fermerBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(ajoutEvnBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(29, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(ajoutEvnBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(fermerBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(errorLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         titreAjout.setAlignment(java.awt.Label.CENTER);
@@ -177,20 +199,20 @@ public class AjoutInterface extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(titreAjout, javax.swing.GroupLayout.DEFAULT_SIZE, 794, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addGap(41, 41, 41)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addComponent(titreAjout, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(29, 29, 29)
+                .addContainerGap()
                 .addComponent(titreAjout, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(58, Short.MAX_VALUE))
+                .addGap(20, 20, 20)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 446, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         jPanel2.getAccessibleContext().setAccessibleName("Ajout Évènement");
@@ -210,12 +232,15 @@ public class AjoutInterface extends javax.swing.JFrame {
         nouv.setLink(lienInput.getText());
         nouv.setDescription(descriptionInput.getText());
         nouv.setPubDate(dateInput.getText());
-        controleur.ajouterNouvelle(nouv);
-        controleur.mettreAJour();
-        clearFields();
-        String message = "La nouvelle : " + nouv.getTitle() + " a été ajoutée!";
-        controleur.afficherMessage(message);
-         this.setVisible(false);
+        
+        // verifier les champs avant d'ajouter une nouvelle
+        int errors = verificationNouvelle(nouv);
+        
+        if (errors == 0) {
+            operationReussie(nouv);
+        } else {
+            operationEchec();
+        }
     }//GEN-LAST:event_ajoutEvnBtnActionPerformed
 
     private void fermerBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_fermerBtnMouseClicked
@@ -233,8 +258,71 @@ public class AjoutInterface extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_titreInputActionPerformed
 
-   
+    // Description : 
+    // vérirfier les champs des utilisateurs et afficher les erreurs s'il y en a
+   protected int verificationNouvelle(Nouvelles nouv){
+       int errors = 0;
+       String errs = "";
+       var ouvert = "<html><div color='blue'>";
+       var ferme = "</div></html>";
+       
+       if(nouv.getTitle().length() <= 1){
+           errors++;
+           errs += "<p>Un titre doit être fournit</p><br>";
+       }
+  
+       if(nouv.getDescription().length() <= 1){
+           errors++;
+           errs += "<p>La description n'est pas assez longue.</p><br>";
+       }
+              
+      if(nouv.getLink().length() <= 1){
+           errors++;
+           errs += "<p>Un lien doit être fournit.</p><br>";
+       }
+       
+      if(errors != 0){
+        errorLabel.setText(ouvert + errs + ferme);
+      }
+      else {
+          errorLabel.setText(""); 
+      }
+       
+       return errors;
+   }
     
+    // Description : 
+    // effectuer ces taches si la nouvelle est valide
+    private void operationReussie(Nouvelles nouv) {
+        controleur.ajouterNouvelle(nouv);
+        controleur.mettreAJour();
+        clearFields();
+        
+        // afficher message confirmation
+        String message = "La nouvelle : " + nouv.getTitle() + " a été ajoutée!";
+        controleur.afficherMessage(message);
+        
+        // fermer la fenetre
+        this.setVisible(false);   
+    }
+    
+    public void supprimerMesage() 
+    {  
+        new java.util.Timer().schedule( 
+                new java.util.TimerTask() {
+                    @Override
+                    public void run() {
+                        // your code here
+                        errorLabel.setText("");
+                    }
+                }, 
+                10000 
+        );
+    } 
+    
+    private void operationEchec() {
+        supprimerMesage();
+    }
     
     // clear method
     private void clearFields() {
@@ -285,6 +373,7 @@ public class AjoutInterface extends javax.swing.JFrame {
     private javax.swing.JButton ajoutEvnBtn;
     private javax.swing.JTextField dateInput;
     private javax.swing.JTextArea descriptionInput;
+    private javax.swing.JLabel errorLabel;
     private javax.swing.JButton fermerBtn;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
