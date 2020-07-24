@@ -5,9 +5,6 @@
  */
 package my_package;
 
-import java.awt.Color;
-import javax.swing.JTextField;
-
 /**
  *
  * @author hugob
@@ -306,6 +303,14 @@ public class AjoutInterface extends javax.swing.JFrame {
         this.setVisible(false);   
     }
     
+    // Description : 
+    // effectuer ces taches si la nouvelle est non-valide
+        private void operationEchec() {
+        supprimerMesage();
+    }
+    
+    // Description : 
+    // afficher un message d'erreur et l'effacer apres 10 secondes
     public void supprimerMesage() 
     {  
         new java.util.Timer().schedule( 
@@ -320,11 +325,9 @@ public class AjoutInterface extends javax.swing.JFrame {
         );
     } 
     
-    private void operationEchec() {
-        supprimerMesage();
-    }
     
-    // clear method
+   // Description : 
+   // effacer les champs
     private void clearFields() {
       titreInput.setText("");
       lienInput.setText("");

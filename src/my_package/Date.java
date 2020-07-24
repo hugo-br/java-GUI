@@ -20,20 +20,17 @@ import java.util.Locale;
 public class Date
 {       
     
-  
   public String getDate(){
-    DateTimeFormatter dtf = DateTimeFormatter.ofPattern("EE DD MM YYYY HH:MM:SS", Locale.CANADA_FRENCH);
+    DateTimeFormatter dtf = DateTimeFormatter.ofPattern("EE, DD MMM YYYY HH:MM:SS", Locale.ENGLISH);
     LocalDateTime now = LocalDateTime.now();
     return dtf.format(now);     
   }
-  
-  public String convertDate(String date){
+ 
+ public String convertDate(String date){
     
    /*  DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss", Locale.CANADA_FRENCH);
        LocalDateTime dateTime = LocalDateTime.parse(date, dtf);
        return dtf.format(dateTime);
 */ return date;
-  }
- 
-  
-}  
+  } 
+}

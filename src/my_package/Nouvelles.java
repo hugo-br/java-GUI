@@ -53,7 +53,4 @@ public class Nouvelles {
     public void afficher(){
         System.out.println(this.title);
     }
-    
-    
-    
 }

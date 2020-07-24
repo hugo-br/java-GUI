@@ -4,7 +4,6 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.Writer;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -17,18 +16,14 @@ import javax.xml.stream.XMLEventReader;
 import javax.xml.stream.XMLInputFactory;
 import javax.xml.stream.XMLStreamException;
  
-import org.jdom2.Attribute;
 import org.jdom2.Document;
 import org.jdom2.Element;
 import org.jdom2.JDOMException;
-import org.jdom2.filter.Filters;
 import org.jdom2.input.DOMBuilder;
 import org.jdom2.input.SAXBuilder;
 import org.jdom2.input.StAXEventBuilder;
 import org.jdom2.output.Format;
 import org.jdom2.output.XMLOutputter;
-import org.jdom2.xpath.XPathExpression;
-import org.jdom2.xpath.XPathFactory;
 import org.xml.sax.SAXException;
  
 @SuppressWarnings("unused")
@@ -50,57 +45,34 @@ public class LireXML
     public static void getNouvelles(NouvellesControleur controleur){
         
         System.out.println("\n========== START ...\n");
+        // lien pour le feed
         String xmlFile = "https://www.teluq.ca/site/infos/rss/communiques.php";
     // String xmlFile = "myxml.xml";
         Document document = getSAXParsedDocument(xmlFile);
         Element rootNode = document.getRootElement();
-     //   System.out.println("Root Element :: " + rootNode.getName());
-        
-     //   rootNode.getChildren("channel").forEach( LireXML::readChanelNode(controleur) );
-       Date date = new Date();
-     
+
        List list = rootNode.getChildren("channel");
        for ( int i = 0; i < list.size(); i++ ) {
          Element node = (Element) list.get(i);
          
          controleur.setTitle(node.getChildText("title"));
          controleur.setDescription(node.getChildText("description"));
+         List li = node.getChildren("item");  
          
-
-         List li = node.getChildren("item");       
          for ( int j = 0; j < li.size(); j++ ){
             Element itemNode = (Element) li.get(j);
-           //  news = readItemNode(itemNode);
-           // news.afficher();
-            
-        Nouvelles nouvelle = new Nouvelles();
-        
-        
-        nouvelle.setTitle(itemNode.getChildText("title"));
-        nouvelle.setLink(itemNode.getChildText("link"));
-        // convert date
-        String pubDate = itemNode.getChildText("pubDate");
-        String test = date.convertDate(pubDate);
-        
-        nouvelle.setPubDate(test);
-        
-        nouvelle.setDescription(itemNode.getChildText("description"));
-        
-        controleur.ajouterNouvelle(nouvelle);
-        
-          //  String title = itemNode.getChildTextTrim("title");
-          //  System.out.println(title);
+            Nouvelles nouvelle = new Nouvelles();
+            nouvelle.setTitle(itemNode.getChildText("title"));
+            nouvelle.setLink(itemNode.getChildText("link"));
+            nouvelle.setPubDate(itemNode.getChildText("pubDate"));
+            nouvelle.setDescription(itemNode.getChildText("description"));
+            controleur.ajouterNouvelle(nouvelle);
          }
         }
         System.out.println("\n... END ==============\n");
-        
     }
     
     private static void readChanelNode( Element chanelNode) {
-       //  System.out.println("\n tttt=   \n");
-      //  System.out.println("title : " + chanelNode.getAttributeValue("title"));
-      //  System.out.println("title : " + chanelNode.getChildText("title"));
-         // get all
          chanelNode.getChildren("item").forEach(LireXML::readItemNode );
     }
     
@@ -111,26 +83,9 @@ public class LireXML
         nouvelle.setPubDate(itemNode.getChildText("pubDate"));
         nouvelle.setDescription(itemNode.getChildText("description"));
         return nouvelle;
-        
-      //  nouvelle.afficher();
-       // controleur.ajouterNouvelle(nouvelle);
     }
-    
-    
-     private static void addNews(NouvellesControleur controleur){
-        Nouvelles nouvelle = new Nouvelles();
-        nouvelle.setTitle("title");
-        nouvelle.setLink("link");
-        nouvelle.setPubDate("pubDate");
-        nouvelle.setDescription("description");
-        
-         controleur.ajouterNouvelle(nouvelle);
-     
-     }
-     
-    
-     
-     
+
+
     private static Document getSAXParsedDocument(final String fileName) 
     {
         SAXBuilder builder = new SAXBuilder(); 
@@ -183,16 +138,16 @@ public class LireXML
         return document;
     }
     
+    // Description
+    // exporter la nouvelle sur le fichier selectionner
     public void exporterXML(NouvellesControleur controleur, String path){
         
-        
-       //Root Element
+       //Creer un Root Element
         Element root=new Element("channel");
         Document doc=new Document();
+        ArrayList<Nouvelles> nouv = controleur.getListeNouvelle();
         
-         ArrayList<Nouvelles> nouv = controleur.getListeNouvelle();
-        
-        // loop les nouvelles
+        // parcourir les nouvelles
         for (int counter = 0; counter < nouv.size(); counter++) { 		      
             Nouvelles nouvelle = nouv.get(counter);
             Element child = new Element("item");
@@ -204,16 +159,13 @@ public class LireXML
             root.addContent(child);
       }   		
         
-        
-        
-        //Define root element like root
+        // Definir l'element racine du document
         doc.setRootElement(root);
        
         //Create the XML
         XMLOutputter outter=new XMLOutputter();
         outter.setFormat(Format.getPrettyFormat());
         try {
-         // Writer fileWriter = new FileWriter("C:\\Users\\hugob\\Documents\\"+doc);
             outter.output(doc, new FileWriter(new File(path)));
             String message = "Le fichier XML a été enregistré dans le répertoire suivant : \n" + path;
             controleur.afficherMessage(message);
@@ -221,9 +173,5 @@ public class LireXML
         } catch (IOException ex) {
             Logger.getLogger(LireXML.class.getName()).log(Level.SEVERE, null, ex);
         }
-
- 
-    
     }
-
 }

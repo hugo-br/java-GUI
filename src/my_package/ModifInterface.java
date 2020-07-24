@@ -26,6 +26,8 @@ public class ModifInterface extends javax.swing.JFrame {
         initComponents();
     }
     
+    // Description :
+    // afficher la nouvelle selectionner dans l'interface
     public void afficherModifNouvelle(int i){
        this.nouvelleInt = i;
        Nouvelles nouv = controleur.getNouvelle(i);
@@ -35,6 +37,8 @@ public class ModifInterface extends javax.swing.JFrame {
        pubModif.setText(nouv.getPubDate());
     }
     
+     // Description :
+    // modifier la nouvelle selectionner    
     public void ModifNouvelle(){
         Nouvelles nouv = controleur.getNouvelle(this.nouvelleInt);
         nouv.setTitle(titreModif.getText());
@@ -384,14 +388,16 @@ public class ModifInterface extends javax.swing.JFrame {
     //    this.setVisible(false);
 
     }//GEN-LAST:event_supprimerBtnEditMouseClicked
-
+    
+    // bouton SUPPRIMER
     private void supprimerBtnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_supprimerBtnEditActionPerformed
         // TODO add your handling code here:
         int r = this.nouvelleInt;
         controleur.supprimerNouvelle(r);
         this.setVisible(false);
     }//GEN-LAST:event_supprimerBtnEditActionPerformed
-
+    
+    // bouton MODIFIER
     private void ajoutEvnBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ajoutEvnBtn1ActionPerformed
         // ajouter la nouvelle avec les parametres:
         ModifNouvelle();
@@ -402,7 +408,8 @@ public class ModifInterface extends javax.swing.JFrame {
     private void fermerBtn2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_fermerBtn2MouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_fermerBtn2MouseClicked
-
+    
+    // bouton ANNULER 
     private void fermerBtn2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fermerBtn2ActionPerformed
         // TODO add your handling code here:
          this.setVisible(false);

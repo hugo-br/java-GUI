@@ -59,7 +59,7 @@ public class FluxInterface extends javax.swing.JFrame {
     }
     
      /**
-     * Creer la table
+     * Creer la table pour les nouvelles
      */   
     AbstractTableModel model = new AbstractTableModel() {
 
@@ -111,6 +111,7 @@ public class FluxInterface extends javax.swing.JFrame {
         NouvelleTable.updateUI(); 
         setNombreNouvelle();
     }
+    
     /*
     Description :
     Mettre a jour la table d'evenements
@@ -120,7 +121,10 @@ public class FluxInterface extends javax.swing.JFrame {
         supprimerMesage();
     }
     
-    
+      /*
+    Description :
+    Afficher les message aux utilisateurs
+    */  
     public void supprimerMesage() 
     {  
         new java.util.Timer().schedule( 
@@ -131,7 +135,7 @@ public class FluxInterface extends javax.swing.JFrame {
                         Messages.setText("");
                     }
                 }, 
-                5000 
+                8000 
         );
     } 
     
@@ -470,6 +474,8 @@ public class FluxInterface extends javax.swing.JFrame {
   
     }//GEN-LAST:event_ajoutBoutonActionPerformed
     
+    // Description : 
+    // Initialiser la fenetre avec le titre du feed XML et sa description
     private void initialiserNouvelles(){
        setNombreNouvelle();
        label1.setText(controleur.getTitle());
@@ -477,6 +483,8 @@ public class FluxInterface extends javax.swing.JFrame {
        NouvelleTable.setModel(model);
     }
     
+    // Description : 
+    // Faire appara[itre le nombre de nouvelles
     private void setNombreNouvelle(){
         int nbRows = controleur.getListeNouvelle().size();
        nombreLabel.setText("Total :" + Integer.toString(nbRows));
@@ -498,8 +506,8 @@ public class FluxInterface extends javax.swing.JFrame {
        
     }//GEN-LAST:event_ajoutBoutonMouseClicked
 
-   // Description : Faire apparaitre la fenetre de modification
-   // 
+   // Description : 
+   // Faire apparaitre la fenetre de modification sur clique
     private void NouvelleTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_NouvelleTableMouseClicked
         // TODO add your handling code here:
        int r = NouvelleTable.rowAtPoint(evt.getPoint());

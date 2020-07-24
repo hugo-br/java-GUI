@@ -25,7 +25,8 @@ public final class NouvellesControleur {
     LireXML reader;
     Date date;
     
-    
+    // Description :
+    // Creer un nouveau controleur et initialiser le feed
     public NouvellesControleur() throws ParserConfigurationException {
       
       // aller chercher le feed   
@@ -55,7 +56,7 @@ public final class NouvellesControleur {
 
     }
     
-    
+    // set et get attributs
     public String getTitle() {
         return title;
     }
@@ -72,15 +73,16 @@ public final class NouvellesControleur {
         this.description = description;
     }    
         
- // Ajout de la nouvelle   
-  public void ajouterNouvelle(Nouvelles nouvelle) {    
+    // Description :    
+    // Ajout de la nouvelle   
+     public void ajouterNouvelle(Nouvelles nouvelle) {    
         nouvelles.add(nouvelle);  
-  }
+    }
   
-  // Enlever la nouvelle de la liste
-   public void supprimerNouvelle(Integer i) {
-        
-        
+    // Description :
+    //  Supprimer une nouvelle de la liste
+    public void supprimerNouvelle(Integer i) {
+
         Nouvelles nouv = this.getNouvelle(i);
         String message = nouv.getTitle() + " a été supprimé de la liste.";
         nouvelles.remove(nouv); 
@@ -92,28 +94,33 @@ public final class NouvellesControleur {
        this.afficherMessage(message);
   } 
   
-    // Description : retourner toutes les nouvelles <ArrayList>
+    // Description : 
+    // Retourner toutes les nouvelles <ArrayList>
    public ArrayList<Nouvelles> getListeNouvelle() {
         return nouvelles;
     }
     
-    // Description : retourner une nouvelle particuliere
+    // Description : 
+   // Retourner une nouvelle particuliere
     public Nouvelles getNouvelle(int i){
          ArrayList<Nouvelles> nouv = this.nouvelles;
          return nouv.get(i);
     }
     
-    // Description : afficher l'interface pour l'ajout
+    // Description : 
+    // Afficher l'interface pour l'ajout
     public void afficherAjout(){
        ajoutInterface.setVisible(true);
     }
     
-    // Description : afficher l'interface pour l'ajout
+    // Description : 
+    // Afficher l'interface pour l'exportation du document
     public void afficherExport(){
        exportInterface.setVisible(true);
     }
     
-    // Description : mettre à jour la liste graphique des nouvelles
+    // Description : 
+    // Mettre à jour la liste graphique des nouvelles
     public void mettreAJour(){
        fluxInterface.mettreAJourListing();
        String message = "La nouvelle a été mise à jour!";
@@ -121,7 +128,8 @@ public final class NouvellesControleur {
     }
     
     
-     // Description : afficher l'interface pour la modification
+     // Description : 
+    // Afficher l'interface pour la modification
     public void afficherEdit(int r){
         if(r >= 0){
          editInterface.afficherModifNouvelle(r);
@@ -129,26 +137,23 @@ public final class NouvellesControleur {
         }
     }
     
-    /* Description :
-            Convertir une date
-    */
-    public String convertDate(String longDate){
-       return date.convertDate(longDate);
-    }
-    
-    // Description : retourner la date <String>
+    // Description : 
+    // Retourner la date <String>
      public String getDate(){
         // return "text";
         return date.getDate();
      }
      
-      // Description : creer et exporter un fichier XML
+    // Description : 
+    // Creer et exporter un fichier XML
      public void exporterXML(String path){
            String replacePath = path.replace("\\", "\\\\");  
            replacePath = replacePath + "\\monFeed.xml";
            reader.exporterXML(this, replacePath);
      }
      
+    // Description : 
+    // Afficher un message sur l'interface principal   
      public void afficherMessage(String message){
        fluxInterface.afficherMessage(message);
      }
